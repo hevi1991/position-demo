@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>position</title>
+    <style>
+      .square {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: gray;
+      }
+
+      .square-small {
+        width: 50px;
+        height: 50px;
+        background: gray;
+      }
+      .orange {
+        background: #ff9900;
+      }
+
+      body {
+        margin-bottom: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      position 写个demo，加深印象
+    </h1>
+    <a href="http://www.ruanyifeng.com/blog/2019/11/css-position.html">原文</a>
+    <h2>position</h2>
+    <ul>
+      <li>static</li>
+      <li>relative</li>
+      <li>fixed</li>
+      <li>absolute</li>
+      <li>sticky</li>
+    </ul>
+    <h2>static 属性值</h2>
+    <p>
+      static是position属性的默认值。如果省略position属性，浏览器就认为该元素是static定位。
+    </p>
+    <h2>relative，absolute，fixed</h2>
+    <p>
+      relative、absolute、fixed这三个属性值有一个共同点，都是相对于某个基点的定位，不同之处仅仅在于基点不同。所以，只要理解了它们的基点是什么，就很容易掌握这三个属性值。
+    </p>
+    <p>这三种定位都不会对其他元素的位置产生影响，因此元素之间可能产生重叠。</p>
+    <h3>relative</h3>
+    <p>
+      relative表示，相对于默认位置（即static时的位置）进行偏移，即定位基点是元素的默认位置。
+    </p>
+    <div>
+      <div class="square" style="position: relative;left: 50px;">1</div>
+      <div class="square orange">2</div>
+    </div>
+    <h3>absolute</h3>
+    <p>
+      absolute表示，相对于上级元素（一般是父元素）进行偏移，即定位基点是父元素。
+    </p>
+    <p>
+      它有一个重要的限制条件：定位基点（一般是父元素）不能是static定位，否则定位基点就会变成整个网页的根元素html。另外，absolute定位也必须搭配top、bottom、left、right这四个属性一起使用。（使用了absolute的dom将被排出static流）
+    </p>
+    <div>
+      <div class="square" style="position:absolute;left:50px">3</div>
+      <div class="square orange">4</div>
+    </div>
+    <br />
+    <div>
+      <div class="square" style="position:relative;">
+        5
+        <div
+          class="square-small orange"
+          style="position:absolute;left:25px;top:25px;"
+        >
+          6
+        </div>
+      </div>
+    </div>
+    <h3>fixed</h3>
+    <p>
+      fixed表示，相对于视口（viewport，浏览器窗口）进行偏移，即定位基点是浏览器窗口。这会导致元素的位置不随页面滚动而变化，好像固定在网页上一样。（使用了fixed的dom将被排出static流）
+    </p>
+    <div class="square" style="position: fixed; right:0;bottom:0;">7</div>
+    <h3>sticky</h3>
+    <p>
+      sticky跟前面四个属性值都不一样，它会产生动态效果，很像relative和fixed的结合：一些时候是relative定位（定位基点是自身默认位置），另一些时候自动变成fixed定位（定位基点是视口）。
+    </p>
+    <p>
+      因此，它能够形成"动态固定"的效果。比如，网页的搜索工具栏，初始加载时在自己的默认位置（relative定位）。
+    </p>
+    <div
+      style="position: sticky;left: 0;right: 0;top: 5px;background-color: black;color: white;"
+    >
+      Lorem ipsum dolor sit amet.
+    </div>
+    <div style="height: 100vh;background-color: #eee">
+      向下滚动
+    </div>
+    <div
+      style="position: sticky;left: 0;right: 0;top: 32px;background-color: black;color: white;"
+    >
+      Lorem ipsum dolor sit amet.
+    </div>
+    <div style="height: 100vh;background-color: #eee">
+      向下滚动
+    </div>
+  </body>
+</html>
